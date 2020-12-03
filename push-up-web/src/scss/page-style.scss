@@ -1,5 +1,19 @@
-@import "colors.scss"
+@import "colors.scss";
+
+.bg{
+    height: 100vh;
+    width: 100vw;
+    background-image: linear-gradient(45deg, $lpri, $primary);
+}
 
 .log-comp{
+    padding: 20px;
+}
 
+.main-comp{
+    padding: 25px;
+    background-image: linear-gradient(45deg, $lsec, $secondary);
+    box-shadow: 3px 3px 8px $primary;
+    border: 2px solid $primary;
+    border-radius: 20px;
 }
