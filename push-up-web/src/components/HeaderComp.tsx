@@ -22,7 +22,7 @@ export const HeaderComp: React.FC<IProps> = (props:IProps) => {
     }
 
     return(
-        <div className="container">
+        <div className="container header">
             <div className="row justify-content-center">
             
                 <div className="col-2">

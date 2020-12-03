@@ -1,4 +1,4 @@
-import React from "react"
+import React, { SyntheticEvent } from "react"
 
 interface IProps {
 
@@ -14,8 +14,12 @@ interface IProps {
 export const MainComp: React.FC<IProps> = (props: IProps) => {
     
     /** starts the timer */
-    const startTimer = () => {
+    const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
+        const minutes = event.currentTarget["min-input"].value;
+
+        console.log(minutes);
     }
 
     /** gets your personal record data */
@@ -30,16 +34,21 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
 
                     <div className="row">
                         <h4 className="min-label">Minutes before alarm:</h4>
-                        <input className="min-input" type="number" placeholder="60" />
                     </div>
 
-                    <div className="row justify-content-center">
-                        <button className="start-btn" onClick={startTimer}>Start</button>
-                    </div>
+                    <form onSubmit={startTimer}>
+                        <div className="row justify-content-center">
+                            <input className="min-input" name="min-input" type="number" placeholder="60" min="1" max="9999"/>
+                        </div>
+
+                        <div className="row justify-content-center start-div">
+                            <button type="submit" className="start-btn" >Start</button>
+                        </div>
+                    </form>
                     
 
-                    <div className="row justify-content-center">
-                        <button className="start-btn" onClick={getRecords}>Push-Up Records</button>
+                    <div className="row justify-content-center records-div">
+                        <button className="records-btn" onClick={getRecords}>Push-Up Records</button>
                     </div>
 
                 </div>
