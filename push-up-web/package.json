@@ -45,9 +45,9 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/bootstrap": "^5.0.1",
-    "@types/typescript": "^2.0.0",
     "@types/reactstrap": "^8.7.2",
-    "@types/axios": "^0.14.0"
+    "@types/typescript": "^2.0.0"
   }
 }

@@ -1,4 +1,5 @@
-import React, { SyntheticEvent } from "react"
+import React, { SyntheticEvent, useState } from "react"
+import { TimerModal } from "./TimerModal";
 
 interface IProps {
 
@@ -13,13 +14,16 @@ interface IProps {
  */
 export const MainComp: React.FC<IProps> = (props: IProps) => {
     
+    const [showModal, setShowModal] = useState(false);
+    let secondsTillAlarm: number = 0;
+
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const minutes = event.currentTarget["min-input"].value;
-
-        console.log(minutes);
+        secondsTillAlarm = 
+        setShowModal(true);
     }
 
     /** gets your personal record data */
@@ -28,6 +32,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
     }
 
     return (
+        <>
         <div className="container">
             <div className="row justify-content-center">
                 <div className="main-comp">
@@ -54,5 +59,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                 </div>
             </div>
         </div>
+        { showModal ? <TimerModal pushUpTime={secondsTillAlarm} /> : <span/> }
+        </>
     )
 }
