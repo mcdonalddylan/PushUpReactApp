@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react"
+import React, { SyntheticEvent, useEffect, useState } from "react"
 import { TimerModal } from "./TimerModal";
 
 interface IProps {
@@ -15,15 +15,42 @@ interface IProps {
 export const MainComp: React.FC<IProps> = (props: IProps) => {
     
     const [showModal, setShowModal] = useState(false);
-    let secondsTillAlarm: number = 0;
+    const [seconds, setSeconds] = useState(0);
+    const [allowCountdown, setAllow] = useState(false);
 
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const minutes = event.currentTarget["min-input"].value;
-        secondsTillAlarm = 
-        setShowModal(true);
+            const totalSeconds = event.currentTarget["min-input"].value*60;
+
+            setSeconds(totalSeconds);
+            setAllow(true);
+    }
+
+    useEffect(()=>{
+        console.log(allowCountdown + " " + showModal);
+        if(allowCountdown == true && seconds > 0 && showModal == true)
+        {
+            setTimeout(()=>setSeconds(seconds -1), 1000);
+        }
+        else if(seconds <= 0)
+        {
+            setSeconds(0);
+            setAllow(false);
+        }
+        else if(showModal == false)
+        {
+            setSeconds(0);
+            setAllow(false);
+        }
+    });
+
+    const removeModal = () => {
+        if(showModal)
+        {
+            setShowModal(false);
+        }
     }
 
     /** gets your personal record data */
@@ -47,7 +74,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                         </div>
 
                         <div className="row justify-content-center start-div">
-                            <button type="submit" className="start-btn" >Start</button>
+                            <button type="submit" className="start-btn" onClick={()=>setShowModal(!showModal)}>Start</button>
                         </div>
                     </form>
                     
@@ -59,7 +86,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                 </div>
             </div>
         </div>
-        { showModal ? <TimerModal pushUpTime={secondsTillAlarm} /> : <span/> }
+        <TimerModal show={showModal} pushUpTime={seconds} removeModalFunction={()=>setShowModal(!showModal)} />
         </>
     )
 }
