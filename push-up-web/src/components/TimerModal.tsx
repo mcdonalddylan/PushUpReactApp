@@ -1,5 +1,5 @@
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../scss/page-style.scss";
 
 interface IProps{
@@ -10,6 +10,7 @@ interface IProps{
 
 export const TimerModal: React.FC<IProps> = (props:IProps) => {
 
+    const [hasPlayedAlarm, setPlayedAlarm] = useState(false);
     let formattedTime: string = "";
     let minutes: number = 0;
 
@@ -23,12 +24,25 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
         minutes = Math.trunc(props.pushUpTime/60);
         formattedTime = minutes + ":" + "00";
     }
-    else
+    else if (Math.trunc(props.pushUpTime/60) <= 0)
     {
         formattedTime = `${props.pushUpTime}`;
     }
-
+    else if (props.pushUpTime <= 0)
+    {
+        formattedTime = "0";
+        setPlayedAlarm(true);
+    }
     
+    useEffect(()=>{
+        if(hasPlayedAlarm === true)
+        {
+            setPlayedAlarm(false);
+            const alarm1 = require("../assets/push_up_alarm1.wav");
+            const audio = new Audio(alarm1);
+            audio.play();
+        }
+    });
 
     return(
         
