@@ -94,16 +94,16 @@
     -o-animation-name: growNShrink !important;
     -moz-animation-name: growNShrink !important;
     -webkit-animtion-name: growNShrink ;
-    animation-duration: 0.3s !important;
-    -o-animation-duration: 0.3s !important;
-    -moz-animation-duration: 0.3s !important;
-    -webkit-animation-duration: 0.3s !important; 
+    animation-duration: 0.2s !important;
+    -o-animation-duration: 0.2s !important;
+    -moz-animation-duration: 0.2s !important;
+    -webkit-animation-duration: 0.2s !important; 
 }
 
 @keyframes growNShrink {
     0% {transform: scale(1); color: $dpri;}
 
-    50% {transform: scale(1.5); color: $tertiary;}
+    50% {transform: scale(2); color: $tertiary;}
 
     100% {transform: scale(1); color: $dpri;}
 }

@@ -1,5 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from "react"
 import { TimerModal } from "./TimerModal";
+import alarm2 from "../assets/push_up_alarm1.wav";
 
 interface IProps {
 
@@ -14,18 +15,23 @@ interface IProps {
  */
 export const MainComp: React.FC<IProps> = (props: IProps) => {
     
+    const [hasPlayedAlarm, setPlayedAlarm] = useState(false);
+    //let hasPlayedAlarm = false;
     const [showModal, setShowModal] = useState(false);
     const [seconds, setSeconds] = useState(0);
     const [allowCountdown, setAllow] = useState(false);
+
+    const [alarmAudio, setAlarm] = useState(new Audio(alarm2));
 
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-            const totalSeconds = event.currentTarget["min-input"].value*60;
+        const totalSeconds = event.currentTarget["min-input"].value*60;
 
-            setSeconds(totalSeconds);
-            setAllow(true);
+        setSeconds(totalSeconds);
+        setAllow(true);
+        chooseAlarm();
     }
 
     useEffect(()=>{
@@ -34,22 +40,48 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         {
             setTimeout(()=>setSeconds(seconds -1), 1000);
         }
-        else if(seconds <= 0)
+        else if(seconds === 0)
         {
-            setSeconds(0);
+            setSeconds(-1);
             setAllow(false);
+            setPlayedAlarm(true);
+            //hasPlayedAlarm = true;
         }
         else if(showModal == false)
         {
-            setSeconds(0);
+            setSeconds(-1);
             setAllow(false);
+        }
+
+        if(hasPlayedAlarm === true)
+        {
+            setPlayedAlarm(false);
+            //hasPlayedAlarm = false;
+            console.log("playing looped sound");
+            alarmAudio.loop = true;
+            alarmAudio.play();
+
         }
     });
 
-    const removeModal = () => {
-        if(showModal)
+    const chooseAlarm = () => {
+
+        //randomly choosing a looping alarm sound
+        const randVal = Math.round(Math.random()*2);
+        if (randVal == 0)
         {
-            setShowModal(false);
+            console.log("randVal = 0");
+            setAlarm(new Audio(alarm2));
+        }
+        else if (randVal == 1)
+        {
+            console.log("randVal = 1");
+            setAlarm(new Audio(alarm2));
+        }
+        else if (randVal == 2)
+        {
+            console.log("randVal = 2");
+            setAlarm(new Audio(alarm2));
         }
     }
 
@@ -86,7 +118,10 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                 </div>
             </div>
         </div>
-        <TimerModal show={showModal} pushUpTime={seconds} removeModalFunction={()=>setShowModal(!showModal)} />
+        <TimerModal show={showModal} pushUpTime={seconds} removeModalFunction={()=>{
+            alarmAudio.pause();
+            alarmAudio.currentTime = 0;
+            setShowModal(!showModal);}} />
         </>
     )
 }
