@@ -6,6 +6,8 @@ interface IProps {
 
 }
 
+let totalSeconds: number = 0; //global variable that you can add to other components
+
 /**
  * The component which contains the functionality for starting the
  * push up alarm. Also contains button to view the user's personal
@@ -16,26 +18,31 @@ interface IProps {
 export const MainComp: React.FC<IProps> = (props: IProps) => {
     
     const [hasPlayedAlarm, setPlayedAlarm] = useState(false);
-    //let hasPlayedAlarm = false;
     const [showModal, setShowModal] = useState(false);
     const [seconds, setSeconds] = useState(0);
     const [allowCountdown, setAllow] = useState(false);
-
     const [alarmAudio, setAlarm] = useState(new Audio(alarm2));
 
+    
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const totalSeconds = event.currentTarget["min-input"].value*60;
+        //totalSeconds = event.currentTarget["min-input"].value*60;
+        totalSeconds = 1
 
-        setSeconds(totalSeconds);
-        setAllow(true);
-        chooseAlarm();
+        if(totalSeconds > 0)
+        {
+            setSeconds(totalSeconds);
+            setAllow(true);
+            chooseAlarm();
+            setShowModal(!showModal);
+        }
+        
     }
 
     useEffect(()=>{
-        console.log(allowCountdown + " " + showModal);
+        console.log("allow countdown: " + allowCountdown + " show modal: " + showModal);
         if(allowCountdown == true && seconds > 0 && showModal == true)
         {
             setTimeout(()=>setSeconds(seconds -1), 1000);
@@ -49,6 +56,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         }
         else if(showModal == false)
         {
+            stopAlarm();
             setSeconds(-1);
             setAllow(false);
         }
@@ -85,6 +93,11 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         }
     }
 
+    const stopAlarm = () => {
+        alarmAudio.pause();
+        alarmAudio.currentTime = 0;
+    }
+
     /** gets your personal record data */
     const getRecords = () => {
 
@@ -106,7 +119,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                         </div>
 
                         <div className="row justify-content-center start-div">
-                            <button type="submit" className="start-btn" onClick={()=>setShowModal(!showModal)}>Start</button>
+                            <button type="submit" className="start-btn" >Start</button>
                         </div>
                     </form>
                     
@@ -119,9 +132,10 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
             </div>
         </div>
         <TimerModal show={showModal} pushUpTime={seconds} removeModalFunction={()=>{
-            alarmAudio.pause();
-            alarmAudio.currentTime = 0;
-            setShowModal(!showModal);}} />
+            stopAlarm();
+            setShowModal(!showModal);}} stopAlarmFunction={stopAlarm}
+            resettingTimeFunction={setSeconds} totalMinutes={totalSeconds}
+            allowCountdownFunction={setAllow}/>
         </>
     )
 }

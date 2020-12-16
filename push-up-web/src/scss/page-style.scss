@@ -17,29 +17,40 @@
 .main-comp{
     padding: 35px;
     background-image: linear-gradient(135deg, $lsec, $secondary);
-    box-shadow: 5px 5px 15px $primary;
-    border: 2px solid $primary;
+    box-shadow: 5px 5px 30px $trans-pri;
+    border: 3px solid $primary;
     border-radius: 20px;
 }
 
 .min-label{
     color: $dsec;
     text-align: center;
-    margin: 5px;
+    margin: 10px;
 }
 
-.min-input{
+.min-input {
+    border: 3px solid $secondary;
+    border-radius: 10px;
+    color: $dpri;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 900;
+    background-image: linear-gradient(175deg, $lpri, white, white);
+    margin: 10px;
+}
+
+.push-input {
     border: 1px solid $secondary;
     border-radius: 10px;
     color: $dpri;
     text-align: center;
     font-weight: 900;
     background-image: linear-gradient(175deg, $lpri, white, white);
-    margin: 5px;
+    margin: 10px;
 }
 
 .start-div{
-    margin: 10px;
+    margin: 15px;
 }
 
 .start-btn{
@@ -49,7 +60,7 @@
 }
 
 .records-div{
-    margin: 10px;
+    margin: 15px;
 }
 
 .records-btn{
@@ -108,10 +119,75 @@
     100% {transform: scale(1); color: $dpri;}
 }
 
+.timer-wait {
+    margin-top: 10px !important;
+    font-size: 100px !important;
+    font-weight: 100;
+    animation-name: timeFade !important;
+    -o-animation-name: timeFade !important;
+    -moz-animation-name: timeFade !important;
+    -webkit-animtion-name: timeFade ;
+    animation-duration: 0.9s !important;
+    -o-animation-duration: 0.9s !important;
+    -moz-animation-duration: 0.9s !important;
+    -webkit-animation-duration: 0.9s !important; 
+}
+
+.timer-prog {
+    margin-top: 10px !important;
+    font-size: 50px !important;
+    font-weight: bolder;
+}
+
+@keyframes timeFade {
+    0% {color: $dsec;}
+
+    100% {color: #00000000;}
+}
+
+.click-any-lg {
+    font-size: 26px;
+}
+
+.click-any-sm {
+    font-size: 18px;
+}
+
 .timer-btn {
     margin:auto;
     color: white;
-    background-color: $tertiary;
-    padding: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px;
+    border: 0px;
+    animation-name: btnBlink !important;
+    -o-animation-name: btnBlink !important;
+    -moz-animation-name: btnBlink !important;
+    -webkit-animtion-name: btnBlink ;
+    animation-duration: 0.45s !important;
+    -o-animation-duration: 0.45s !important;
+    -moz-animation-duration: 0.45s !important;
+    -webkit-animation-duration: 0.45s !important; 
+    animation-iteration-count: infinite !important;
+    -o-animation-iteration-count: infinite !important;
+    -moz-animation-iteration-count: infinite !important;
+    -webkit-animation-iteration-count: infinite !important;
+}
+
+@keyframes btnBlink {
+    0% {background-color: $tertiary;}
+
+    50% {background-color: pink;}
+
+    100% {background-color: $tertiary;}
+}
+
+.done-btn {
+    margin:auto;
+    color: white;
+    background-color: $primary;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px;
     border: 0px;
 }
