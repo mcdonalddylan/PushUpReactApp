@@ -1,6 +1,7 @@
 import React, { SyntheticEvent, useEffect, useState } from "react"
 import { TimerModal } from "./TimerModal";
 import alarm2 from "../assets/push_up_alarm1.wav";
+import { Redirect } from "react-router";
 
 interface IProps {
 
@@ -22,7 +23,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
     const [seconds, setSeconds] = useState(0);
     const [allowCountdown, setAllow] = useState(false);
     const [alarmAudio, setAlarm] = useState(new Audio(alarm2));
-
+    const [redirectToRecords, setRedirectToRecords] = useState(false);
     
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
@@ -100,7 +101,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
 
     /** gets your personal record data */
     const getRecords = () => {
-
+        setRedirectToRecords(true);
     }
 
     return (
@@ -136,6 +137,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
             setShowModal(!showModal);}} stopAlarmFunction={stopAlarm}
             resettingTimeFunction={setSeconds} totalMinutes={totalSeconds}
             allowCountdownFunction={setAllow}/>
+        {redirectToRecords ? <Redirect to="/myData" /> : <></>}
         </>
     )
 }

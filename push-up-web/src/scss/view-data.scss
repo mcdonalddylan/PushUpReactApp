@@ -1,0 +1,19 @@
+@import "colors.scss";
+
+.temp-comp {
+    background-color: $lsec;
+    color: $dpri;
+    border: 3px solid $secondary;
+    border-radius: 20px;
+    box-shadow: 6px 6px 30px $trans-sec;
+    padding: 40px;
+    text-align: center;
+}
+
+.back-btn {
+    color: white;
+    background-color: $dsec;
+    margin-top: 20px;
+    border: 0px;
+    padding: 10px;
+}

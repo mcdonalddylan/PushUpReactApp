@@ -10,7 +10,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
         <div>
             <div className="row justify-content-center">
                 <div className="log-comp">
-
+                    <h1>Login form goes here</h1>
                 </div>
             </div>
         </div>  

@@ -1,0 +1,52 @@
+@import "colors.scss";
+
+.logout-btn {
+    background-color: $tertiary;
+    color:white;
+    padding: 10px;
+    border: 0px;
+    font-size: 15px;
+}
+
+.go-back-btn {
+    background-color: $secondary;
+    color:white;
+    padding: 10px;
+    border: 0px;
+    font-size: 15px;
+}
+
+.logged-name {
+    color: $dpri;
+    font-size: 18px;
+}
+
+.logo {
+    display: inline;
+    margin-left: 10px;
+    max-width: 50px;
+    animation-name: logoAni;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes logoAni {
+    0%{transform: translate(0px,-20px) rotate(0deg);}
+    
+    25%{transform: rotate(180deg);}
+
+    50%{transform: translate(0px,10px) rotate(180deg);}
+
+    75%{transform: rotate(0deg);}
+
+    100%{transform: translate(0px,-20px) rotate(0deg);}
+}
+
+.app-name {
+    margin: auto;
+    color: $dpri;
+    text-align: center;
+    display: inline;
+    
+}

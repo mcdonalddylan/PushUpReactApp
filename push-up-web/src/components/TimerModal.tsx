@@ -30,13 +30,15 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
     {
         hours = Math.trunc(Math.trunc(props.pushUpTime/60)/60);
         minutes = Math.trunc(props.pushUpTime/60)%60;
-        formattedTime = hours + ":" + minutes + ":" + props.pushUpTime%60;
+        formattedTime = hours + ":" + (minutes < 10 ? "0" : "") + minutes + ":" + 
+        (props.pushUpTime%60 < 10 ? "0" : "") + props.pushUpTime%60;
         showReady = false;
     }
     else if (Math.trunc(props.pushUpTime/60) > 0 && props.pushUpTime%60 !== 0)
     {
         minutes = Math.trunc(props.pushUpTime/60);
-        formattedTime = minutes + ":" + props.pushUpTime%60;
+        formattedTime = (minutes < 10 ? "0" : "") + minutes + ":" + 
+        (props.pushUpTime%60 < 10 ? "0" : "") +props.pushUpTime%60;
         showReady = false;
     }
     else if (Math.trunc(props.pushUpTime/60) > 0 && props.pushUpTime%60 === 0)
@@ -68,7 +70,32 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
     const doneWithSet = (event:SyntheticEvent<HTMLFormElement>) => {
         //submit the data somehow
         const numberOfPushUps = event.currentTarget["input"].value;
+
+        if(sessionStorage.getItem("tempSets") == null)
+        {
+            sessionStorage.setItem("tempSets","1");
+        }
+        else
+        {
+            const currentSetString:any = sessionStorage.getItem("tempSets");
+            const currentSetCount:number = parseInt(currentSetString);
+
+            sessionStorage.setItem("tempSets", `${currentSetCount+1}`);
+        }
         
+        const currentDate = new Date();
+        const currentDateString:string = `${currentDate.getMonth()+1} ${currentDate.getDay()}, 
+        ${currentDate.getFullYear()} ${currentDate.getHours()%12}:`+
+        `${(currentDate.getMinutes() < 10 ? "0" : "") + currentDate.getMinutes()}`;
+
+        sessionStorage.setItem("tempData", JSON.stringify({
+            date: currentDateString, 
+            lastSetInterval: props.totalMinutes,
+            lastPushUpTime: progressTime,
+            lastPushUpCount: numberOfPushUps,
+        }));
+
+        //sessionStorage.setItem("",{date: })
         //trigger a reset of the push-up timer
         console.log(props.totalMinutes);
         props.resettingTimeFunction(props.totalMinutes);
@@ -148,7 +175,7 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
                             <form onSubmit={doneWithSet}>
                                 <div><h4>How many push-ups?</h4></div>
                                 <div><input className="push-input" name="input" type="number" placeholder="?" min="1" max="9999"/></div>
-                                <div><input className="start-btn" type="submit" value="Submit"/></div>
+                                <div><input className="start-btn" type="submit" value="Submit and reset timer"/></div>
                             </form>
                             :
                             <>
