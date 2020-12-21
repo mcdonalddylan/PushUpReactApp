@@ -2,7 +2,7 @@
 
 ## Project Description
 
-A React web application to HEAVILY motivate you to do push-ups while you work.
+A React web application to HEAVILY motivate you to do push-ups while you work. There are a few mobile apps which do something similar, but not only do they not provide many accessibility options (colorblind mode for example) but they are not nearly as straight-forward as this web app is. This app is for people like myself who work in front of a computer for hours a day and know that they need to keep their back in shape. You could use just any alarm you want to get the same effect as this app, the difference is that with my app you can track you data and see yourself improve over time. Maybe it's just me, but being able to actually view your progress in this way can be very motivating. 
 
 ## Technologies Used
 
@@ -73,7 +73,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Usage
 
-TODO
+This application will sound an alarm after a given time interval (in minutes). Stopping the alarm will trigger a 5 second countdown to allow time for the user to get on the floor. Once the user is done with their push-ups they can click on the "I'm done" button to record the number of pushups they just did. By submitting that information, the alarm timer resets and you're back to the countdown module. To exit the countdown you can click anywhere outside of the countdown module. The user can then looks at their latest push-up data by clicking the "view data" button.
 
 ## License
 
