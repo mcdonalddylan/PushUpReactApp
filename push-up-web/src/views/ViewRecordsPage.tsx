@@ -12,7 +12,10 @@ export const ViewRecordsPage: React.FC<IProps> = (props:IProps) => {
     const [doRecordsExist, setDoRecordsExist] =useState(false);
     const [redirectToTimer, setRedirect] = useState(false);
 
-    tempData = JSON.parse(sessionStorage.tempData);
+    if(sessionStorage.getItem("tempData") != null)
+    {
+        tempData = JSON.parse(sessionStorage.tempData);
+    }
 
     const backToTimer = () => {
         setRedirect(true);

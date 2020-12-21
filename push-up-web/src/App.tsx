@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LoginComp } from './components/LoginComp';
 import { MainComp } from './components/MainComp';
 import { HeaderComp } from './components/HeaderComp';
@@ -10,6 +10,9 @@ import { NoLoginPage } from './views/NoLoginPage';
 import { ViewRecordsPage } from './views/ViewRecordsPage';
 
 function App() {
+
+  const [showNotification, setShowNotification] = useState(true);
+
   return (
     <>
       <div className="bg">   
@@ -23,7 +26,8 @@ function App() {
             </Switch>
           </BrowserRouter>
         {/* Notification component is always below every other page */}
-        <NotificationComp />
+        {showNotification ? <NotificationComp text={"**Test notification**"}
+        toggleFunction={()=>setShowNotification(!showNotification)}/> : <></>}
       </div>
     </>
   );

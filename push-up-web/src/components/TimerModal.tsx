@@ -22,10 +22,12 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
     const [showRecordInput, setRecordInput] = useState(false);
 
     let showReady = false;
+
+    //Bunch of if statements which format the minutes given by the user 
+    // into a proper hours:minutes:seconds format
     let formattedTime: string = "";
     let minutes: number = 0;
     let hours: number = 0;
-
     if (Math.trunc(Math.trunc(props.pushUpTime/60)/60) > 0 && props.pushUpTime%60 !== 0)
     {
         hours = Math.trunc(Math.trunc(props.pushUpTime/60)/60);
@@ -90,7 +92,7 @@ export const TimerModal: React.FC<IProps> = (props:IProps) => {
 
         sessionStorage.setItem("tempData", JSON.stringify({
             date: currentDateString, 
-            lastSetInterval: props.totalMinutes,
+            lastSetInterval: props.totalMinutes/60,
             lastPushUpTime: progressTime,
             lastPushUpCount: numberOfPushUps,
         }));

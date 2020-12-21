@@ -1,6 +1,7 @@
 @import "colors.scss";
 
 .notif {
+    position: relative;
     border: 2px solid $primary;
     border-radius: 10px;
     width: 100%;
@@ -11,4 +12,15 @@
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+}
+
+.close-notif-btn {
+    position: absolute;
+    top: -15px;
+    left:-15px;
+    border: 2px solid $lsec;
+    border-radius: 50%;
+    color: $lsec;
+    padding: 0px 12px 4px 12px;
+    background-color: $dpri;
 }

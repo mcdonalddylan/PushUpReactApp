@@ -23,14 +23,16 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
     const [seconds, setSeconds] = useState(0);
     const [allowCountdown, setAllow] = useState(false);
     const [alarmAudio, setAlarm] = useState(new Audio(alarm2));
+
     const [redirectToRecords, setRedirectToRecords] = useState(false);
-    
+    const [redirectToLogin, setRedirectToLogin] = useState(false);
+
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        //totalSeconds = event.currentTarget["min-input"].value*60;
-        totalSeconds = 1
+        totalSeconds = event.currentTarget["min-input"].value*60;
+        //totalSeconds = 1
 
         if(totalSeconds > 0)
         {
@@ -109,6 +111,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="main-comp">
+                <button className="log-return-btn" onClick={()=>{setRedirectToLogin(!redirectToLogin);}}>X</button>
 
                     <div className="row">
                         <h4 className="min-label">Minutes before alarm:</h4>
@@ -123,7 +126,6 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                             <button type="submit" className="start-btn" >Start</button>
                         </div>
                     </form>
-                    
 
                     <div className="row justify-content-center records-div">
                         <button className="records-btn" onClick={getRecords}>Push-Up Records</button>
@@ -138,6 +140,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
             resettingTimeFunction={setSeconds} totalMinutes={totalSeconds}
             allowCountdownFunction={setAllow}/>
         {redirectToRecords ? <Redirect to="/myData" /> : <></>}
+        {redirectToLogin ? <Redirect to="/" /> : <></>}
         </>
     )
 }

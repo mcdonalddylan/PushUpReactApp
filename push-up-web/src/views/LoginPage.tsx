@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router";
 import { LoginComp } from "../components/LoginComp";
-import "../scss/nav-style.scss";
+import "../scss/page-style.scss";
 
 interface IProps{
 
@@ -16,7 +16,7 @@ export const LoginPage: React.FC<IProps> = (props:IProps) => {
         <div className="container">
             {revealLogin ?
             <>
-                <LoginComp />
+                <LoginComp toggleFunction={()=>setRevealLogin(!revealLogin)}/>
                 <div className="row justify-content-center">
                     <button className="no-login-btn-sm" 
                     onClick={()=>setDirected(true)}>Just let me start</button>

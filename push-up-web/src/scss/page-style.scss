@@ -10,11 +10,58 @@
     padding:20px;
 }
 
+.no-login-btn-sm {
+    padding: 15px;
+    color: white;
+    background-color: $secondary;
+    font-size: 20px;
+    border: 0px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.no-login-btn {
+    padding: 20px;
+    color: white;
+    background-color: $secondary;
+    font-size: 30px;
+    border: 0px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.login-btn {
+    padding: 20px;
+    color: white;
+    background-color: $primary;
+    font-size: 30px;
+    border: 0px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.log-return-btn {
+    position: absolute;
+    top: -10px;
+    left:-10px;
+    border: 2px solid $lpri;
+    border-radius: 50%;
+    color: $lpri;
+    padding: 1px 9px 1px 9px;
+    background-color: $dsec;
+}
+
 .log-comp{
+    position:relative;
     padding: 25px;
+    background-image: linear-gradient(135deg, $lsec, $secondary);
+    box-shadow: 5px 5px 30px $trans-pri;
+    border: 3px solid $primary;
+    border-radius: 20px;
 }
 
 .main-comp{
+    position: relative;
     padding: 35px;
     background-image: linear-gradient(135deg, $lsec, $secondary);
     box-shadow: 5px 5px 30px $trans-pri;

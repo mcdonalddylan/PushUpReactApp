@@ -22,7 +22,7 @@ export const HeaderComp: React.FC<IProps> = (props:IProps) => {
     const logout = () => {
 
         setRedirect(true);
-        setRedirect(false);
+        setTimeout(()=>setRedirect(false),10);
     }
 
     const goBack = () => {
@@ -31,7 +31,8 @@ export const HeaderComp: React.FC<IProps> = (props:IProps) => {
     }
 
     return(
-        <div className="container header">
+        <div className="rounded-div header">
+        <div className="container">
             <div className="row justify-content-center">
             
             {isLoggedIn ?
@@ -42,8 +43,7 @@ export const HeaderComp: React.FC<IProps> = (props:IProps) => {
                 </div> 
             :
                 <div className="col-2">
-                    <button className="go-back-btn" 
-                    onClick={goBack}>Back to login</button>
+                    <></>
                 </div> 
             }
                 
@@ -67,6 +67,7 @@ export const HeaderComp: React.FC<IProps> = (props:IProps) => {
             }
 
             {redirectToLogin ? <Redirect to="/"/> : <></>}
+        </div>
         </div>
     )
 }
