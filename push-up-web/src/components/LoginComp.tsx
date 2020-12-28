@@ -3,7 +3,8 @@ import React, { SyntheticEvent } from "react";
 import "../scss/page-style.scss";
 
 interface IProps {
-    toggleFunction:Function;
+    toggleFunction:Function,
+    toggleRegisterFunction:Function,
 }
 
 export const LoginComp: React.FC<IProps> = (props:IProps) => {
@@ -21,6 +22,10 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
 
     return(
         <div>
+            <div className="row justify-content-center">
+                <h2>Login:</h2>
+            </div>
+            
             <div className="row justify-content-center">
                 <div className="log-comp">
                 <button className="log-return-btn" onClick={closeForm}>X</button>
@@ -47,6 +52,11 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                         </div>
                     </form>
                 </div>
+                
+            </div>
+
+            <div className="row justify-content-center" style={{marginBottom:10}}>
+                <a onClick={()=>props.toggleRegisterFunction()}>Don't have an account?</a>
             </div>
         </div>  
     )
