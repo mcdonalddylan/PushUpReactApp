@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>The Obstruction</title>
+</head>
+    
+<style>  
+body {
+    background-color: black;
+    color: whitesmoke;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5vw;
+        
+    }
+
+h1 {
+    color: white;
+    text-align: center;
+    font-family: chase zen paris, regular, sans-serif;
+    font-size: 6vw
+    }
+
+p {
+   color: whitesmoke;
+   font-family: Barlow Light, Regular, sans-serif;
+   font-size: 2vw;
+   }
+    
+   
+    
+
+</style>
+
+<body>
+    
+	<h1>The Obstruction</h1>
+    <p>Click on the image below to shuffle the cards.</p>
+    <br/>
+	<button onclick="newCard()"> <input type="image" id="myimage" style="height:200px;width:200px;" padding= "0"; outline= "0";  border-style="none"; border="0" src="https://lh3.googleusercontent.com/Cp2whgLuH8Q61DTsaMDyqRZUx2mwHT-lJjdPtIDqyt-tXh1Z_G78xpNd2spMD9Jpj-oCHUD62tHl_vApEvp8LlOsNzcHrsGGbJ4LeJSpNMRyJ4leLb_f3BV7ZAl3OxuxYa-df0zYVQ" /> 
+    </button>
+            <br/>
+        <br/>
+	<div id ="CardDisplay">
+		<!--Card will display here-->
+        <br/>
+        </div>
+
+    <script>
+            var card = [
+                'The Fool',
+                'The Magician',
+                'The High Priestess',
+                'The Empress',
+                'The Emperor',
+                'The Hierophant',
+                'The Lovers',
+                'The Chariot',
+                'Strength',
+                'The Hermit',
+                'Wheel of Fortune',
+                'Justice',
+                'The Hanged Man',
+                'Death',
+                'Temperance',
+                'The Devil',
+                'The Tower',
+                'The Star',
+                'The Moon',
+                'The Sun',
+                'Judgement',
+                'The World',
+                    
+                    ];
+            
+            
+            function newCard() {
+                var randomNumber = Math.floor(Math.random() * (card.length));
+                document.getElementById('CardDisplay').innerHTML = card[randomNumber];
+            }
+            
+             
+            var image = [];
+            
+            
+            
+            /*
+            
+            Images
+            
+            The Fool
+                Direct: 
+                    https://lh3.googleusercontent.com/ryuW5mqgJjxKY_XNIBDzGKhOxQ9_8kkKBgA52I6r5Hfx1p4YHpuEdHLnZN_pfjQIj62ZPF3k0vIw51lQiuL-dZWiCGPm7AY280PrjegwYsj_w389Ih1bh-vfSeBSDgUk-zfAouS8fg=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/ryuW5mqgJjxKY_XNIBDzGKhOxQ9_8kkKBgA52I6r5Hfx1p4YHpuEdHLnZN_pfjQIj62ZPF3k0vIw51lQiuL-dZWiCGPm7AY280PrjegwYsj_w389Ih1bh-vfSeBSDgUk-zfAouS8fg=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/ryuW5mqgJjxKY_XNIBDzGKhOxQ9_8kkKBgA52I6r5Hfx1p4YHpuEdHLnZN_pfjQIj62ZPF3k0vIw51lQiuL-dZWiCGPm7AY280PrjegwYsj_w389Ih1bh-vfSeBSDgUk-zfAouS8fg=w400-h315-p-k" /> </a>
+            The Magician 
+                Direct: 
+                    https://lh3.googleusercontent.com/2FtHLnAO91-TVtj3T4QOv2N-0U9G5BNbDQJ7rfQLWMYCpkIOVlcjY6_-7t0-rJbyWd16cPlNxSzmnj9O_R_QzdbLQ4CXKmIqr4k5JGOnCrwq3YNxIHUCHTwcmoEr2EpgDWNPM4Upcg=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/2FtHLnAO91-TVtj3T4QOv2N-0U9G5BNbDQJ7rfQLWMYCpkIOVlcjY6_-7t0-rJbyWd16cPlNxSzmnj9O_R_QzdbLQ4CXKmIqr4k5JGOnCrwq3YNxIHUCHTwcmoEr2EpgDWNPM4Upcg=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/2FtHLnAO91-TVtj3T4QOv2N-0U9G5BNbDQJ7rfQLWMYCpkIOVlcjY6_-7t0-rJbyWd16cPlNxSzmnj9O_R_QzdbLQ4CXKmIqr4k5JGOnCrwq3YNxIHUCHTwcmoEr2EpgDWNPM4Upcg=w400-h315-p-k" /> </a>
+            The High Priestess
+                Direct: 
+                    https://lh3.googleusercontent.com/44-5UfyeIXw0QaFLcuDaZ3irl6N8axOs1CfkaROiFgIfkY-NmpsFNZtdMAxh-c98LMxh08ekG2_ICK4LRWvIk1eC1DSfKKbir2-LUxjPepVPNvOHR9xpNhyedH-PLpi4Z9RC_xltpQ=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/44-5UfyeIXw0QaFLcuDaZ3irl6N8axOs1CfkaROiFgIfkY-NmpsFNZtdMAxh-c98LMxh08ekG2_ICK4LRWvIk1eC1DSfKKbir2-LUxjPepVPNvOHR9xpNhyedH-PLpi4Z9RC_xltpQ=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/44-5UfyeIXw0QaFLcuDaZ3irl6N8axOs1CfkaROiFgIfkY-NmpsFNZtdMAxh-c98LMxh08ekG2_ICK4LRWvIk1eC1DSfKKbir2-LUxjPepVPNvOHR9xpNhyedH-PLpi4Z9RC_xltpQ=w400-h315-p-k" /> </a>
+            The Empress
+                Direct:
+                    https://lh3.googleusercontent.com/EibFvxIw7ev-sGZicjqhjhCxdUQHm3SdkfPjVOqHa01v7NjQm97cwI3chjrSRbWLmfDXwHfsYY-hA9ILIj-b27JZvM32IIWTJVO2vdTOxli2F50tKU2OuNQdcSrZqFtku9TurVQCgA=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/EibFvxIw7ev-sGZicjqhjhCxdUQHm3SdkfPjVOqHa01v7NjQm97cwI3chjrSRbWLmfDXwHfsYY-hA9ILIj-b27JZvM32IIWTJVO2vdTOxli2F50tKU2OuNQdcSrZqFtku9TurVQCgA=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/EibFvxIw7ev-sGZicjqhjhCxdUQHm3SdkfPjVOqHa01v7NjQm97cwI3chjrSRbWLmfDXwHfsYY-hA9ILIj-b27JZvM32IIWTJVO2vdTOxli2F50tKU2OuNQdcSrZqFtku9TurVQCgA=w400-h315-p-k" /> </a>
+            The Emperor
+                Direct: 
+                    https://lh3.googleusercontent.com/sKM_SVMWO3ZmgCzj0Afaz7zcpLpgKiqfdyKAy2U7wTkycz_Jtqfbfih1DAO9n9t3O3qcR-5er93eZLASJwsrCuJh-yWFIV_2oO4etPqkZAfywVV4uC0GOhnKlDFLEUO5Ayz75SkhEA=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/sKM_SVMWO3ZmgCzj0Afaz7zcpLpgKiqfdyKAy2U7wTkycz_Jtqfbfih1DAO9n9t3O3qcR-5er93eZLASJwsrCuJh-yWFIV_2oO4etPqkZAfywVV4uC0GOhnKlDFLEUO5Ayz75SkhEA=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/sKM_SVMWO3ZmgCzj0Afaz7zcpLpgKiqfdyKAy2U7wTkycz_Jtqfbfih1DAO9n9t3O3qcR-5er93eZLASJwsrCuJh-yWFIV_2oO4etPqkZAfywVV4uC0GOhnKlDFLEUO5Ayz75SkhEA=w400-h315-p-k" /> </a>
+            The Hierophant
+                Direct: 
+                    https://lh3.googleusercontent.com/gKCFls3g410nFFHrarYf2lJ7tqfdxK-jajMIrkhQkjLyQup9-EnvorUlQiWf3dNEFnfh1EQnQKp27FGsrccTsmDiTVWjCl6ue_4NaBpdTMW6tbh-ZGRT_xI0DoirHMrGXfXqUj28PA=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/gKCFls3g410nFFHrarYf2lJ7tqfdxK-jajMIrkhQkjLyQup9-EnvorUlQiWf3dNEFnfh1EQnQKp27FGsrccTsmDiTVWjCl6ue_4NaBpdTMW6tbh-ZGRT_xI0DoirHMrGXfXqUj28PA=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/gKCFls3g410nFFHrarYf2lJ7tqfdxK-jajMIrkhQkjLyQup9-EnvorUlQiWf3dNEFnfh1EQnQKp27FGsrccTsmDiTVWjCl6ue_4NaBpdTMW6tbh-ZGRT_xI0DoirHMrGXfXqUj28PA=w400-h315-p-k" /> </a>
+            The Lovers
+                Direct:                                                 https://lh3.googleusercontent.com/FrUuaSVWDILeGdvFXp3oi9mtK7EUPeCVzI2N4RJPpp3A_cvDtmCbvDKQTyIf1pSxg9Pm3_9WiNqBOYmj0y4TylrEr2WLhez7yqeVLYlwtEFOtXkIezglM48aZYbM4ehEkzXjlu90ig=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/FrUuaSVWDILeGdvFXp3oi9mtK7EUPeCVzI2N4RJPpp3A_cvDtmCbvDKQTyIf1pSxg9Pm3_9WiNqBOYmj0y4TylrEr2WLhez7yqeVLYlwtEFOtXkIezglM48aZYbM4ehEkzXjlu90ig=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/FrUuaSVWDILeGdvFXp3oi9mtK7EUPeCVzI2N4RJPpp3A_cvDtmCbvDKQTyIf1pSxg9Pm3_9WiNqBOYmj0y4TylrEr2WLhez7yqeVLYlwtEFOtXkIezglM48aZYbM4ehEkzXjlu90ig=w400-h315-p-k" /> </a>
+            The Chariot
+                Direct:
+                    https://lh3.googleusercontent.com/bVgG0lGwzOH7cKDZtyHOzlNRP80dCtyQT_atww7um-lKoRmTnyVwxf5zSdfRVghFl5t3IwihHdwULlkltMhdgGrIvZGP9fPmt6VKecNMGlmNwUXdhP2N8y2YXlbW0fJQcEnqPQ-yig=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/bVgG0lGwzOH7cKDZtyHOzlNRP80dCtyQT_atww7um-lKoRmTnyVwxf5zSdfRVghFl5t3IwihHdwULlkltMhdgGrIvZGP9fPmt6VKecNMGlmNwUXdhP2N8y2YXlbW0fJQcEnqPQ-yig=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/bVgG0lGwzOH7cKDZtyHOzlNRP80dCtyQT_atww7um-lKoRmTnyVwxf5zSdfRVghFl5t3IwihHdwULlkltMhdgGrIvZGP9fPmt6VKecNMGlmNwUXdhP2N8y2YXlbW0fJQcEnqPQ-yig=w400-h315-p-k" /> </a>
+            The Strength
+                Direct:
+                    https://lh3.googleusercontent.com/_RM-AGFBd7NFpwpRltEDXwOOtOaey7BtnS1vbuXSVJhsg4FKFa0RzvxyxGkOv0IxSDt88-xOCQPns3MBPb36gpcwaybuZXSAI4iep33QVhxOIjTUNyLlYY9yX9DTqdI89n_rjsTaBA=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/_RM-AGFBd7NFpwpRltEDXwOOtOaey7BtnS1vbuXSVJhsg4FKFa0RzvxyxGkOv0IxSDt88-xOCQPns3MBPb36gpcwaybuZXSAI4iep33QVhxOIjTUNyLlYY9yX9DTqdI89n_rjsTaBA=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/_RM-AGFBd7NFpwpRltEDXwOOtOaey7BtnS1vbuXSVJhsg4FKFa0RzvxyxGkOv0IxSDt88-xOCQPns3MBPb36gpcwaybuZXSAI4iep33QVhxOIjTUNyLlYY9yX9DTqdI89n_rjsTaBA=w400-h315-p-k" /> </a>
+            The Hermit
+                Direct:
+                    https://lh3.googleusercontent.com/9Ka4zulqvziybyKaNQ0rhe6QigrnfihdIOKXOCsLQGBPHSJ1P_qFeIarfCW8ix-haIFdobtbzux-MVxtsPKk_W493EJsEgeXUNrEjxl6lMPAhH6Stut2s0K2aj1fI4F8EmnPjw442g=w2400
+                Embedd:
+                    <a href="https://lh3.googleusercontent.com/9Ka4zulqvziybyKaNQ0rhe6QigrnfihdIOKXOCsLQGBPHSJ1P_qFeIarfCW8ix-haIFdobtbzux-MVxtsPKk_W493EJsEgeXUNrEjxl6lMPAhH6Stut2s0K2aj1fI4F8EmnPjw442g=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/9Ka4zulqvziybyKaNQ0rhe6QigrnfihdIOKXOCsLQGBPHSJ1P_qFeIarfCW8ix-haIFdobtbzux-MVxtsPKk_W493EJsEgeXUNrEjxl6lMPAhH6Stut2s0K2aj1fI4F8EmnPjw442g=w400-h315-p-k" /> </a>
+                    
+            
+            
+            
+            
+            
+            
+            
+            
+            */ 
+            </script>            
+</body>
+</html>
+
+
+<!-- ALTERNATIVE BUTTON
+    button {
+    background-color: whitesmoke; 
+    border: none;
+    color: black;
+    padding: 30px 64px;
+    text-align: center;
+    font-family: Barlow Light, Regular, sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2vw;
+    border-radius: 50%;
+    } -->
+

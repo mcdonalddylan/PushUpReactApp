@@ -1,6 +1,12 @@
+import axios from "axios";
 import { EventEmitter } from "events";
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Redirect } from "react-router";
+import { setNotifState } from "../actions/notifActions";
+import { setUserState } from "../actions/userActions";
 import "../scss/page-style.scss";
+import axiosconfig from "../util/axiosConfig";
 
 interface IProps {
     toggleFunction:Function,
@@ -9,11 +15,69 @@ interface IProps {
 
 export const LoginComp: React.FC<IProps> = (props:IProps) => {
 
+    const [redirectToLogin, setRedirect] = useState(false);
+    
+    const dispatch = useDispatch();
+
     const loginAttempt = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const pass = event.currentTarget["password"].value;
         const email = event.currentTarget["email"].value;
+
+        axiosconfig.post(`/users/login/${email}+${pass}`).then((response:any)=>{
+
+            console.log(response.data);
+            if(response.data != null)
+            {
+                //alert(`Logged in as: ${response.data.firstName} ` +
+                //`${response.data.lastName} babyyyy`);
+                
+                const userData = {
+                    userid: response.data.userid,
+                    email: response.data.email,
+                    firstName: response.data.firstName,
+                    lastName: response.data.lastName,
+                    verified: response.data.verified,
+                }
+
+                dispatch(setUserState(userData));
+
+                const newNotif = {
+                    id: Math.random()*10000,
+                    notifType: "info",
+                    msg: "User: " + userData.firstName + " logged in!",
+                }
+
+                dispatch(setNotifState(newNotif));
+
+                setRedirect(!redirectToLogin); //redirects you to new logged in page
+            }
+            else
+            {
+                //alert("ERROR: Invalid credentials");
+
+                const newNotif = {
+                    id: Math.random()*10000,
+                    notifType: "info",
+                    msg: "ERROR: Invalid credentials.",
+                }
+
+                dispatch(setNotifState(newNotif));
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            //alert("not logged in :(");
+
+            const newNotif = {
+                id: Math.random()*10000,
+                notifType: "info",
+                msg: "ERROR: Log in error.",
+            }
+
+            dispatch(setNotifState(newNotif));
+        });
     }
 
     const closeForm = () => {
@@ -58,6 +122,8 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
             <div className="row justify-content-center" style={{marginBottom:10}}>
                 <a onClick={()=>props.toggleRegisterFunction()}>Don't have an account?</a>
             </div>
+
+            {redirectToLogin ? <Redirect to="/LoggedIn"/> : <></>}
         </div>  
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import "../scss/notification.scss";
 
 interface IProps {
@@ -6,7 +7,7 @@ interface IProps {
     toggleFunction: Function,
 }
 
-export const NotificationComp: React.FC<IProps> = (props:IProps) => {
+const NotificationComp: React.FC<IProps> = (props:IProps) => {
     
     const closeNotification = () => {
         props.toggleFunction();
@@ -24,3 +25,11 @@ export const NotificationComp: React.FC<IProps> = (props:IProps) => {
         </div>
     )
 }
+
+const mapStateToProps = (appState: any) => {
+    return{
+        text: appState.notifState.msg,
+    };
+};
+
+export default connect<any>(mapStateToProps)(NotificationComp);
