@@ -18,6 +18,23 @@
     border: 0px;
     margin: 10px;
     border-radius: 3px;
+    transform: translate(-13px,-13px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($secondary, 30%),
+    3px 3px 0 0 darken($secondary, 30%),
+    5px 5px 0 0 darken($secondary, 30%),
+    7px 7px 0 0 darken($secondary, 30%),
+    9px 9px 0 0 darken($secondary, 30%),
+    11px 11px 0 0 darken($secondary, 30%),
+    13px 13px 0 0 darken($secondary, 30%);
+    transition: all 0.1s;
+}
+
+.no-log-btn-sm-row:hover .no-login-btn-sm{
+    transform: translate(-2px,-2px);
+    box-shadow: 2px 2px 0 0 darken($secondary, 30%);
+    transition: all 0.1s;
 }
 
 .no-login-btn {
@@ -26,18 +43,59 @@
     background-color: $secondary;
     font-size: 30px;
     border: 0px;
-    margin: 10px;
+    margin: 20px;
     border-radius: 3px;
+    transform: translate(-19px,-19px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($secondary, 30%),
+    3px 3px 0 0 darken($secondary, 30%),
+    5px 5px 0 0 darken($secondary, 30%),
+    7px 7px 0 0 darken($secondary, 30%),
+    9px 9px 0 0 darken($secondary, 30%),
+    11px 11px 0 0 darken($secondary, 30%),
+    13px 13px 0 0 darken($secondary, 30%),
+    15px 15px 0 0 darken($secondary, 30%),
+    17px 17px 0 0 darken($secondary, 30%),
+    19px 19px 0 0 darken($secondary, 30%);
+    transition: all 0.1s;
+}
+
+.no-log-btn-row:hover .no-login-btn{
+    box-shadow: 2px 2px darken($secondary, 30%);
+    transform: translate(-2px,-2px);
+    transition: all 0.1s;
 }
 
 .login-btn {
+    display: inline-block;
     padding: 20px;
     color: white;
     background-color: $primary;
     font-size: 30px;
     border: 0px;
-    margin: 10px;
+    margin: 20px;
     border-radius: 3px;
+    transform: translate(-19px,-19px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($primary, 30%),
+    3px 3px 0 0 darken($primary, 30%),
+    5px 5px 0 0 darken($primary, 30%),
+    7px 7px 0 0 darken($primary, 30%),
+    9px 9px 0 0 darken($primary, 30%),
+    11px 11px 0 0 darken($primary, 30%),
+    13px 13px 0 0 darken($primary, 30%),
+    15px 15px 0 0 darken($primary, 30%),
+    17px 17px 0 0 darken($primary, 30%),
+    19px 19px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
+}
+
+.log-btn-row:hover .login-btn{
+    box-shadow: 2px 2px darken($primary, 30%);
+    transform: translate(-2px,-2px);
+    transition: all 0.1s;
 }
 
 .log-return-btn {
@@ -67,6 +125,7 @@
     box-shadow: 5px 5px 30px $trans-pri;
     border: 3px solid $primary;
     border-radius: 20px;
+    transition: all 0.1s;
 }
 
 .min-label{
@@ -103,7 +162,25 @@
 .start-btn{
     color: white;
     background-color: $primary;
+    padding: 5px 15px;
     border: 0px;
+    transform: translate(-11px,-11px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($primary, 30%),
+    3px 3px 0 0 darken($primary, 30%),
+    5px 5px 0 0 darken($primary, 30%),
+    7px 7px 0 0 darken($primary, 30%),
+    9px 9px 0 0 darken($primary, 30%),
+    11px 11px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
+}
+
+.start-btn-row:hover .start-btn{
+    transform: translate(-2px,-2px);
+    vertical-align: middle;
+    box-shadow: 2px 2px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
 }
 
 .records-div{
@@ -114,6 +191,23 @@
     color: white;
     background-color: $primary;
     border: 0px;
+    transform: translate(-11px,-11px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($primary, 30%),
+    3px 3px 0 0 darken($primary, 30%),
+    5px 5px 0 0 darken($primary, 30%),
+    7px 7px 0 0 darken($primary, 30%),
+    9px 9px 0 0 darken($primary, 30%),
+    11px 11px 0 0 darken($primary, 30%);
+    transition: all 0.1s;   
+}
+
+.records-btn-row:hover .records-btn{
+    transform: translate(-2px,-2px);
+    vertical-align: middle;
+    box-shadow: 2px 2px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
 }
 
 .timer-modal-bg {
@@ -207,6 +301,14 @@
     font-weight: bold;
     padding: 15px;
     border: 0px;
+    transform: translate(-7px,-7px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($tertiary, 30%),
+    3px 3px 0 0 darken($tertiary, 30%),
+    5px 5px 0 0 darken($tertiary, 30%),
+    7px 7px 0 0 darken($tertiary, 30%);
+    transition: all 0.1s;
     animation-name: btnBlink !important;
     -o-animation-name: btnBlink !important;
     -moz-animation-name: btnBlink !important;
@@ -219,6 +321,13 @@
     -o-animation-iteration-count: infinite !important;
     -moz-animation-iteration-count: infinite !important;
     -webkit-animation-iteration-count: infinite !important;
+}
+
+.timer-btn-row:hover .timer-btn{
+    transform: translate(-2px,-2px);
+    vertical-align: middle;
+    box-shadow: 2px 2px 0 0 darken($tertiary, 30%);
+    transition: all 0.1s;
 }
 
 @keyframes btnBlink {
@@ -237,4 +346,25 @@
     font-weight: bold;
     padding: 15px;
     border: 0px;
+    transform: translate(-11px,-11px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($primary, 30%),
+    3px 3px 0 0 darken($primary, 30%),
+    5px 5px 0 0 darken($primary, 30%),
+    7px 7px 0 0 darken($primary, 30%),
+    9px 9px 0 0 darken($primary, 30%),
+    11px 11px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
+}
+
+.done-btn-row:hover .done-btn{
+    transform: translate(-2px,-2px);
+    box-shadow: 2px 2px 0 0 darken($primary, 30%);
+    transition: all 0.1s;
+}
+
+.nope-img {
+    height: 100px;
+    width: 100px;
 }

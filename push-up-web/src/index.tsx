@@ -9,6 +9,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { notifReducer } from './reducers/notifReducer';
 import { userReducer } from './reducers/userReducer';
+import { loadState, saveState } from './util/sessionStorage';
 
 const a: any = window;
 
@@ -20,10 +21,19 @@ export const state = combineReducers<IState>({
   notifState: notifReducer,
 });
 
+//re-loads the state from the current session
+const pressistedState = loadState();
+
 const store = createStore(
   state,
+  pressistedState,
   composeEnhancer(applyMiddleware(thunk))
 );
+
+//Every time a dispatch is called this state is stored in the session and then reloaded
+store.subscribe(() => {
+  saveState(store.getState());
+});
   
 ReactDOM.render(
   <Provider store={store}>

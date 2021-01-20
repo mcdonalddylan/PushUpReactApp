@@ -27,18 +27,18 @@ export const LoginPage: React.FC<IProps> = (props:IProps) => {
                 <>
                     <LoginComp toggleFunction={()=>setRevealLogin(!revealLogin)}
                     toggleRegisterFunction={()=>setRevealRegister(!revealRegister)}/>
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center no-log-btn-sm-row">
                         <button className="no-login-btn-sm" 
                         onClick={()=>setDirected(true)}>Just let me start</button>
                     </div>
                 </>
             :
             <>
-                <div className="row justify-content-center">
+                <div className="row justify-content-center log-btn-row">
                     <button className="login-btn" 
                     onClick={()=>setRevealLogin(!revealLogin)}>Login</button>
                 </div>
-                <div className="row justify-content-center">
+                <div className="row justify-content-center no-log-btn-row">
                     <button className="no-login-btn" 
                     onClick={()=>setDirected(true)}>Just let me start</button>
                 </div>

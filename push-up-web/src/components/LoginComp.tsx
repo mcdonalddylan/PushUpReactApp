@@ -3,6 +3,7 @@ import { EventEmitter } from "events";
 import React, { SyntheticEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router";
+import { Spinner } from "react-bootstrap";
 import { setNotifState } from "../actions/notifActions";
 import { setUserState } from "../actions/userActions";
 import "../scss/page-style.scss";
@@ -16,6 +17,7 @@ interface IProps {
 export const LoginComp: React.FC<IProps> = (props:IProps) => {
 
     const [redirectToLogin, setRedirect] = useState(false);
+    const [showSpinner, setShowSpinner] = useState(false);
     
     const dispatch = useDispatch();
 
@@ -25,8 +27,10 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
         const pass = event.currentTarget["password"].value;
         const email = event.currentTarget["email"].value;
 
+        setShowSpinner(true);
         axiosconfig.post(`/users/login/${email}+${pass}`).then((response:any)=>{
-
+            
+            setShowSpinner(false);
             console.log(response.data);
             if(response.data != null)
             {
@@ -56,6 +60,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
             else
             {
                 //alert("ERROR: Invalid credentials");
+                setShowSpinner(false);
 
                 const newNotif = {
                     id: Math.random()*10000,
@@ -69,6 +74,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
         .catch((error) => {
             console.log(error);
             //alert("not logged in :(");
+            setShowSpinner(false);
 
             const newNotif = {
                 id: Math.random()*10000,
@@ -110,10 +116,19 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                             className="push-input" placeholder="*********" />
                         </div>
 
-                        <div className="row justify-content-center" style={{marginTop: 20}}>
+                        <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
                             <input id="log-btn" type="submit" value="login" 
                             className="start-btn"/>
                         </div>
+
+                        {showSpinner ?
+                        <div className="row justify-content-center" style={{marginTop: 5}}>
+                            <Spinner animation="grow" role="info" />
+                        </div>
+                        :
+                        <></>
+                        }
+                        
                     </form>
                 </div>
                 

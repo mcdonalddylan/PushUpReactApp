@@ -2,6 +2,8 @@ import React, { SyntheticEvent, useEffect, useState } from "react"
 import { TimerModal } from "./TimerModal";
 import alarm2 from "../assets/push_up_alarm1.wav";
 import { Redirect } from "react-router";
+import { useDispatch } from "react-redux";
+import { setNotifState } from "../actions/notifActions";
 
 interface IProps {
 
@@ -27,6 +29,8 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
     const [redirectToRecords, setRedirectToRecords] = useState(false);
     const [redirectToLogin, setRedirectToLogin] = useState(false);
 
+    const dispatch = useDispatch();
+    
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -40,6 +44,16 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
             setAllow(true);
             chooseAlarm();
             setShowModal(!showModal);
+        }
+        else
+        {
+            const newNotif = {
+                id: Math.random()*10000,
+                notifType: "info",
+                msg: "ERROR: No time amount has been selected.",
+            }
+
+            dispatch(setNotifState(newNotif));
         }
         
     }
@@ -122,12 +136,12 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                             <input className="min-input" name="min-input" type="number" placeholder="60" min="1" max="9999"/>
                         </div>
 
-                        <div className="row justify-content-center start-div">
+                        <div className="row justify-content-center start-div start-btn-row">
                             <button type="submit" className="start-btn" >Start</button>
                         </div>
                     </form>
 
-                    <div className="row justify-content-center records-div">
+                    <div className="row justify-content-center records-div records-btn-row">
                         <button className="records-btn" onClick={getRecords}>Push-Up Records</button>
                     </div>
 

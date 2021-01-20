@@ -1,5 +1,6 @@
 import { EventEmitter } from "events";
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setNotifState } from "../actions/notifActions";
 import "../scss/page-style.scss";
@@ -10,6 +11,8 @@ interface IProps {
 }
 
 export const RegisterComp: React.FC<IProps> = (props:IProps) => {
+
+    const [showSpinner, setShowSpinner] = useState(false);
 
     const disptach = useDispatch();
 
@@ -22,20 +25,23 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
         const firstName = event.currentTarget["fName"].value;
         const lastName = event.currentTarget["lName"].value;
 
+        setShowSpinner(true);
         if(pass != "" && pass2 != "" && email != "" 
         && firstName != "" && lastName != "")
         {
             if(pass === pass2)
             {
+                
                 axiosConfig.post(`/users/create/${email}+${pass}+${firstName}+${lastName}`)
                 .then(()=>{
                     //stop spinner and show notification of a successful user addition
                     //alert(`User: ${firstName} ${lastName} successfully added!`);
-
+                    
+                    setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
                         notifType: "info",
-                        msg: `User: ${firstName} ${lastName} successfully added!`,
+                        msg: `User: ${firstName} ${lastName} successfully added! Verification email sent.`,
                     }
         
                     disptach(setNotifState(newNotif));
@@ -45,6 +51,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                 .catch((error)=>{
                     console.log(error);
                     
+                    setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
                         notifType: "info",
@@ -57,6 +64,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
             }
             else
             {
+                setShowSpinner(false);
                 const newNotif = {
                     id: Math.random()*10000,
                     notifType: "info",
@@ -68,6 +76,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
         }
         else
         {
+            setShowSpinner(false);
             const newNotif = {
                 id: Math.random()*10000,
                 notifType: "info",
@@ -132,10 +141,18 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                             className="push-input" placeholder="Bobbington" />
                         </div>
 
-                        <div className="row justify-content-center" style={{marginTop: 20}}>
+                        <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
                             <input id="log-btn" type="submit" value="Register" 
                             className="start-btn"/>
                         </div>
+
+                        {showSpinner ?
+                        <div className="row justify-content-center" style={{marginTop: 5}}>
+                            <Spinner animation="grow" role="info"/>
+                        </div>
+                        :
+                        <></>
+                        }
                     </form>
                 </div>
             </div>
