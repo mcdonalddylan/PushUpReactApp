@@ -49,6 +49,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         {
             const newNotif = {
                 id: Math.random()*10000,
+                show: true,
                 notifType: "info",
                 msg: "ERROR: No time amount has been selected.",
             }
@@ -136,8 +137,8 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
                             <input className="min-input" name="min-input" type="number" placeholder="60" min="1" max="9999"/>
                         </div>
 
-                        <div className="row justify-content-center start-div start-btn-row">
-                            <button type="submit" className="start-btn" >Start</button>
+                        <div className="row justify-content-center start-div start-btn-main-row">
+                            <button type="submit" className="start-btn-main" >Start</button>
                         </div>
                     </form>
 

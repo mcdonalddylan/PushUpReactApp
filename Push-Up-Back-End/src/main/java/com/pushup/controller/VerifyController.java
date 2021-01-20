@@ -29,4 +29,10 @@ public class VerifyController {
 	{
 		return verServ.checkCode(code, resp);
 	}
+	
+	@PostMapping("/resend/{email}")
+	public @ResponseBody String resendEmail(@PathVariable("email") String email)
+	{
+		return verServ.resendEmail(email);
+	}
 }

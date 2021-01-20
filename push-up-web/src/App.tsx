@@ -3,16 +3,14 @@ import { LoginComp } from './components/LoginComp';
 import { MainComp } from './components/MainComp';
 import { HeaderComp } from './components/HeaderComp';
 import "../src/scss/page-style.scss";
-import NotificationComp from './components/NotificationComp';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { LoginPage } from './views/LoginPage';
 import { NoLoginPage } from './views/NoLoginPage';
 import { ViewRecordsPage } from './views/ViewRecordsPage';
 import LoggedPage from './views/LoggedPage';
+import NotificationComp from './components/NotificationComp';
 
 function App() {
-
-  const [showNotification, setShowNotification] = useState(true);
 
   return (
     <>
@@ -28,8 +26,7 @@ function App() {
             </Switch>
           </BrowserRouter>
         {/* Notification component is always below every other page */}
-        {showNotification ? <NotificationComp text={"temp text"}
-        toggleFunction={()=>setShowNotification(!showNotification)}/> : <></>}
+        <NotificationComp />
       </div>
     </>
   );

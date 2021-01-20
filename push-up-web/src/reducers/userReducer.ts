@@ -1,7 +1,7 @@
 import { SET_USER } from "../actions/userActions";
 import { IUserState } from "./reduxInterfaces";
 
-const initialUserState:IUserState = {
+export const initialUserState:IUserState = {
     userid: 0,
     email: "",
     password: "",

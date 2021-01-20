@@ -1,5 +1,7 @@
 package com.pushup.service;
 
+import java.util.Random;
+
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,7 @@ import com.pushup.model.Users;
 import com.pushup.model.Verify;
 import com.pushup.repo.UsersRepo;
 import com.pushup.repo.VerifyRepo;
+import com.pushup.util.EmailUtil;
 
 @Service
 public class VerifyService {
@@ -43,7 +46,7 @@ public class VerifyService {
 				}
 				else
 				{
-					return "ERROR: This verification id has already been verified.";
+					return "ERROR: This verification id has already been used.";
 				}
 				
 			}
@@ -55,7 +58,36 @@ public class VerifyService {
 		{
 			e.printStackTrace();
 			return "ERROR: Unknown verification id value.";
+		}catch(Error e)
+		{
+			e.printStackTrace();
+			return "ERROR: Unknown verification id value.";
 		}
+		
+	}
+	
+	public String resendEmail(String email)
+	{
+		try {
+			verRepo.deleteByEmail(email);
+			
+			//creating the new verify object
+			Random rand = new Random();
+			int code = rand.nextInt(1000000000) + rand.nextInt(1000000000);
+			Verify newVer = new Verify(code, email, false);
+			verRepo.save(newVer);
+			
+			EmailUtil.sendMail(email, "Welcome to the Push Up App!", 
+		       		"Please click this link to validate your account: "
+		       		+ "<a href=\"http://localhost:2020/verify/"+code+"\">http://localhost:2020/verify/"+code+"</a>.");
+			
+			return "success";
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return "error";
+		}
+		
 		
 	}
 }

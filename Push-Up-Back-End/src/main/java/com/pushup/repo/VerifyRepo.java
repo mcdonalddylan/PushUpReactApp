@@ -21,4 +21,8 @@ public interface VerifyRepo extends JpaRepository<Verify,Integer>{
 	public void setUsedForVerify(boolean used, Integer code);
 	
 	public Verify findByCode(Integer code);
+	
+	@Modifying
+	@Query("delete Verify v where  v.email = ?1") //'V' in verify has to be capitalized here since it's referring to the Entity name
+	public void deleteByEmail(String email);
 }

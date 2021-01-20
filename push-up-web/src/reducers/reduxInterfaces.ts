@@ -9,6 +9,7 @@ export interface IUserState {
   
   export interface INotifState {
     id: number;
+    show: boolean;
     notifType: string;
     msg: string;
   }

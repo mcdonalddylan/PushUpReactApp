@@ -1,8 +1,9 @@
 import { SET_NOTIF } from "../actions/notifActions"
 import { INotifState } from "./reduxInterfaces";
 
-const initialNotifState:INotifState = {
+export const initialNotifState:INotifState = {
     id: 0,
+    show: false,
     notifType: "",
     msg: "Test notif",
 }

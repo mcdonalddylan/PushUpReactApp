@@ -16,21 +16,24 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
 
     const disptach = useDispatch();
 
-    const registerAttempt = (event:SyntheticEvent<HTMLFormElement>) => {
+    const registerAttempt = (event:SyntheticEvent<HTMLFormElement>) =>
+    {
         event.preventDefault();
 
-        const pass = event.currentTarget["password"].value;
-        const pass2 = event.currentTarget["password2"].value;
-        const email = event.currentTarget["email"].value;
-        const firstName = event.currentTarget["fName"].value;
-        const lastName = event.currentTarget["lName"].value;
-
-        setShowSpinner(true);
-        if(pass != "" && pass2 != "" && email != "" 
-        && firstName != "" && lastName != "")
+        if(showSpinner == false)
         {
-            if(pass === pass2)
+            const pass = event.currentTarget["password"].value;
+            const pass2 = event.currentTarget["password2"].value;
+            const email = event.currentTarget["email"].value;
+            const firstName = event.currentTarget["fName"].value;
+            const lastName = event.currentTarget["lName"].value;
+
+            setShowSpinner(true);
+            if(pass != "" && pass2 != "" && email != "" 
+            && firstName != "" && lastName != "")
             {
+                if(pass === pass2)
+                {
                 
                 axiosConfig.post(`/users/create/${email}+${pass}+${firstName}+${lastName}`)
                 .then(()=>{
@@ -40,6 +43,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                     setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
+                        show: true,
                         notifType: "info",
                         msg: `User: ${firstName} ${lastName} successfully added! Verification email sent.`,
                     }
@@ -47,44 +51,48 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                     disptach(setNotifState(newNotif));
 
                     props.toggleFunction();
-                })
-                .catch((error)=>{
-                    console.log(error);
+                    })
+                    .catch((error)=>{
+                        console.log(error);
                     
+                        setShowSpinner(false);
+                        const newNotif = {
+                            id: Math.random()*10000,
+                            show: true,
+                            notifType: "info",
+                            msg: `ERROR: User unable to be added.`,
+                        }
+        
+                        disptach(setNotifState(newNotif));
+
+                    })
+                }
+                else
+                {
                     setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
                         notifType: "info",
-                        msg: `ERROR: User unable to be added.`,
+                        show: true,
+                        msg: `ERROR: Passwords do not match.`,
                     }
-        
+    
                     disptach(setNotifState(newNotif));
-
-                })
+                }
             }
             else
             {
                 setShowSpinner(false);
                 const newNotif = {
                     id: Math.random()*10000,
+                    show: true,
                     notifType: "info",
-                    msg: `ERROR: Passwords do not match.`,
+                    msg: `ERROR: Not all fields are filled in.`,
                 }
-    
-                disptach(setNotifState(newNotif));
-            }
-        }
-        else
-        {
-            setShowSpinner(false);
-            const newNotif = {
-                id: Math.random()*10000,
-                notifType: "info",
-                msg: `ERROR: Not all fields are filled in.`,
-            }
 
-            disptach(setNotifState(newNotif));
-        }   
+                disptach(setNotifState(newNotif));
+            }   
+        }
     }
 
     const closeForm = () => {
@@ -148,7 +156,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
 
                         {showSpinner ?
                         <div className="row justify-content-center" style={{marginTop: 5}}>
-                            <Spinner animation="grow" role="info"/>
+                            <Spinner animation="grow" variant="info"/>
                         </div>
                         :
                         <></>

@@ -8,6 +8,7 @@ import { setNotifState } from "../actions/notifActions";
 import { setUserState } from "../actions/userActions";
 import "../scss/page-style.scss";
 import axiosconfig from "../util/axiosConfig";
+import { initialUserState } from "../reducers/userReducer";
 
 interface IProps {
     toggleFunction:Function,
@@ -24,66 +25,76 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
     const loginAttempt = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const pass = event.currentTarget["password"].value;
-        const email = event.currentTarget["email"].value;
-
-        setShowSpinner(true);
-        axiosconfig.post(`/users/login/${email}+${pass}`).then((response:any)=>{
-            
-            setShowSpinner(false);
-            console.log(response.data);
-            if(response.data != null)
-            {
-                //alert(`Logged in as: ${response.data.firstName} ` +
-                //`${response.data.lastName} babyyyy`);
+        if (showSpinner == false)
+        {
+            const pass = event.currentTarget["password"].value;
+            const email = event.currentTarget["email"].value;
+    
+            setShowSpinner(true);
+            axiosconfig.post(`/users/login/${email}+${pass}`).then((response:any)=>{
                 
-                const userData = {
-                    userid: response.data.userid,
-                    email: response.data.email,
-                    firstName: response.data.firstName,
-                    lastName: response.data.lastName,
-                    verified: response.data.verified,
-                }
-
-                dispatch(setUserState(userData));
-
-                const newNotif = {
-                    id: Math.random()*10000,
-                    notifType: "info",
-                    msg: "User: " + userData.firstName + " logged in!",
-                }
-
-                dispatch(setNotifState(newNotif));
-
-                setRedirect(!redirectToLogin); //redirects you to new logged in page
-            }
-            else
-            {
-                //alert("ERROR: Invalid credentials");
                 setShowSpinner(false);
+                console.log(response.data);
+                if(response.data != null)
+                {
+                    //alert(`Logged in as: ${response.data.firstName} ` +
+                    //`${response.data.lastName} babyyyy`);
+                    
+                    const userData = {
+                        userid: response.data.userid,
+                        email: response.data.email,
+                        firstName: response.data.firstName,
+                        lastName: response.data.lastName,
+                        verified: response.data.verified,
+                    }
+    
+                    dispatch(setUserState(userData));
+    
+                    const newNotif = {
+                        id: Math.random()*10000,
+                        show: true,
+                        notifType: "info",
+                        msg: "User: " + userData.firstName + " logged in!",
+                    }
+    
+                    dispatch(setNotifState(newNotif));
+    
+                    setRedirect(!redirectToLogin); //redirects you to new logged in page
+                }
+                else
+                {
+                    //alert("ERROR: Invalid credentials");
+                    setShowSpinner(false);
+    
+                    dispatch(setUserState(initialUserState));
+
+                    const newNotif = {
+                        id: Math.random()*10000,
+                        show: true,
+                        notifType: "info",
+                        msg: "ERROR: Invalid credentials.",
+                    }
+    
+                    dispatch(setNotifState(newNotif));
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                //alert("not logged in :(");
+                setShowSpinner(false);
+    
+                dispatch(setUserState(initialUserState));
 
                 const newNotif = {
                     id: Math.random()*10000,
+                    show: true,
                     notifType: "info",
-                    msg: "ERROR: Invalid credentials.",
+                    msg: "ERROR: Log in error.",
                 }
-
+    
                 dispatch(setNotifState(newNotif));
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-            //alert("not logged in :(");
-            setShowSpinner(false);
-
-            const newNotif = {
-                id: Math.random()*10000,
-                notifType: "info",
-                msg: "ERROR: Log in error.",
-            }
-
-            dispatch(setNotifState(newNotif));
-        });
+            });
+        }
     }
 
     const closeForm = () => {
@@ -123,7 +134,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
 
                         {showSpinner ?
                         <div className="row justify-content-center" style={{marginTop: 5}}>
-                            <Spinner animation="grow" role="info" />
+                            <Spinner animation="grow" variant="info" />
                         </div>
                         :
                         <></>
