@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { setNotifState } from "../actions/notifActions";
 import "../scss/page-style.scss";
 import axiosConfig from "../util/axiosConfig";
+import { PushUpSpinner } from "./PushUpSpinner";
 
 interface IProps {
     toggleFunction:Function;
@@ -156,7 +157,8 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
 
                         {showSpinner ?
                         <div className="row justify-content-center" style={{marginTop: 5}}>
-                            <Spinner animation="grow" variant="info"/>
+                            {/* <Spinner animation="grow" variant="info"/> */}
+                            <PushUpSpinner />
                         </div>
                         :
                         <></>

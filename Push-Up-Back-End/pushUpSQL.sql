@@ -94,6 +94,10 @@ u.user_id = p.profile_id order by u.user_id asc;
 --- SELECTS ---
 ---------------
 
+--practice
+--select * from users u where u.user_id in (select author from reimbursement r where r.status_id = 2); 
+--select * from users u join reimbursement r on u.user_id = r.author;
+
 select md5('ye');
 
 select * from user_view;
@@ -102,8 +106,8 @@ select * from posts;
 select * from likes;
 select * from verify;
 
-delete from verif where userid = 40;
-delete from users where userid = 3;
+delete from verify where code = 879218741;
+delete from users where userid = 10;
 
 select * from verif where code = 529166 and used = false;
 ----------------

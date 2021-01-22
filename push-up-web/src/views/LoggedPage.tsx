@@ -5,6 +5,7 @@ import nope from "../assets/nope.gif";
 import { Spinner } from "react-bootstrap";
 import axiosConfig from "../util/axiosConfig";
 import { setNotifState } from "../actions/notifActions";
+import { PushUpSpinner } from "../components/PushUpSpinner";
 
 interface IProps {
     userid: number,
@@ -112,7 +113,8 @@ const LoggedPage: React.FC<IProps> = (props:IProps) => {
 
                 {showSpinner ?
                     <div className="row justify-content-center">
-                        <Spinner animation="grow" variant="warning" />
+                        {/* <Spinner animation="grow" variant="warning" /> */}
+                        <PushUpSpinner />
                     </div>
                 :
                     <></>

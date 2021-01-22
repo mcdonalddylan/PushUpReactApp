@@ -400,3 +400,33 @@
     height: 100px;
     width: 100px;
 }
+
+.push-up-ani {
+    animation-name: spinner;
+    -o-animation-name: spinner;
+    -moz-animation-name: spinner;
+    -webkit-animtion-name: spinner;
+    animation-duration: 0.6s;
+    -o-animation-duration: 0.6s;
+    -moz-animation-duration: 0.6s;
+    -webkit-animation-duration: 0.6s; 
+    animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-iteration-count: infinite;
+    height: 80px;
+    width: 100px;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    -webkit-filter: $filter;
+    filter: $filter;
+}
+
+@keyframes spinner {
+    0% {background-image: url("../assets/push_up_ani01.svg");}
+
+    50% {background-image: url("../assets/push_up_ani02.svg");}
+
+    100%{background-image: url("../assets/push_up_ani01.svg");}
+}

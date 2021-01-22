@@ -9,6 +9,7 @@ import { setUserState } from "../actions/userActions";
 import "../scss/page-style.scss";
 import axiosconfig from "../util/axiosConfig";
 import { initialUserState } from "../reducers/userReducer";
+import { PushUpSpinner } from "./PushUpSpinner";
 
 interface IProps {
     toggleFunction:Function,
@@ -134,7 +135,8 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
 
                         {showSpinner ?
                         <div className="row justify-content-center" style={{marginTop: 5}}>
-                            <Spinner animation="grow" variant="info" />
+                            {/* <Spinner animation="grow" variant="info" /> */}
+                            <PushUpSpinner />
                         </div>
                         :
                         <></>
