@@ -4,7 +4,7 @@ import { INotifState } from "./reduxInterfaces";
 export const initialNotifState:INotifState = {
     id: 0,
     show: false,
-    notifType: "",
+    notifType: "notif-info",
     msg: "Test notif",
 }
 

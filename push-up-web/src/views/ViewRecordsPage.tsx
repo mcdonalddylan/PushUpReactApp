@@ -57,7 +57,7 @@ export const ViewRecordsPage: React.FC<IProps> = (props:IProps) => {
                     <p style={{textAlign: "center"}}>Sorry no records found.</p>
                     }
 
-                    <div className="row justify-content-center">
+                    <div className="row justify-content-center back-btn-row">
                         <button className="back-btn"
                         onClick={backToTimer}>Back to timer</button>
                     </div>

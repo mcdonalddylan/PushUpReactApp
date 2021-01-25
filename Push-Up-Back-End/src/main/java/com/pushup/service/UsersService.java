@@ -71,6 +71,18 @@ public class UsersService {
 		return userRepo.findByEmailAndPassword(email, newPass);
 	}
 	
+	public Boolean changePassword(String email, String newPass)
+	{
+		try {
+			userRepo.setPasswordForUsers(newPass, email);
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	//------------------------------------------------------------------------------------------------
 	//function found at: https://stackoverflow.com/questions/1033947/mysql-md5-and-java-md5-not-equal
 	//meant to encode the hashed password into base 16 to match the password in the db.

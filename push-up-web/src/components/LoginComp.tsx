@@ -54,7 +54,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                     const newNotif = {
                         id: Math.random()*10000,
                         show: true,
-                        notifType: "info",
+                        notifType: "notif-info",
                         msg: "User: " + userData.firstName + " logged in!",
                     }
     
@@ -72,7 +72,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                     const newNotif = {
                         id: Math.random()*10000,
                         show: true,
-                        notifType: "info",
+                        notifType: "notif-error",
                         msg: "ERROR: Invalid credentials.",
                     }
     
@@ -89,7 +89,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                 const newNotif = {
                     id: Math.random()*10000,
                     show: true,
-                    notifType: "info",
+                    notifType: "notif-error",
                     msg: "ERROR: Log in error.",
                 }
     

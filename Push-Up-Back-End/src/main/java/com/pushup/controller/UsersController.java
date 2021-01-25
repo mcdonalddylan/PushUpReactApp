@@ -67,4 +67,11 @@ public class UsersController {
 	{
 		return userService.findUserByEmailAndPass(email, password);
 	}
+	
+	@PostMapping("/changePass/{email}+{newPass}")
+	public @ResponseBody Boolean changePass(@PathVariable("email") String email, @PathVariable("newPass") String newPass)
+	{
+		return userService.changePassword(email, newPass);
+	}
+	
 }

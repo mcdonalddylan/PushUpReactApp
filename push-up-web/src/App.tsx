@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { LoginComp } from './components/LoginComp';
-import { MainComp } from './components/MainComp';
-import { HeaderComp } from './components/HeaderComp';
 import "../src/scss/page-style.scss";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { LoginPage } from './views/LoginPage';
@@ -9,6 +7,8 @@ import { NoLoginPage } from './views/NoLoginPage';
 import { ViewRecordsPage } from './views/ViewRecordsPage';
 import LoggedPage from './views/LoggedPage';
 import NotificationComp from './components/NotificationComp';
+import UserSettingsPage from './views/UserSettingsPage';
+import HeaderComp from './components/HeaderComp';
 
 function App() {
 
@@ -21,6 +21,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={LoginPage} />
               <Route path="/LoggedIn" component={LoggedPage} />
+              <Route path="/userSettings" component={UserSettingsPage} />
               <Route path="/noLogin" component={NoLoginPage} />
               <Route path="/myData" component={ViewRecordsPage} />
             </Switch>

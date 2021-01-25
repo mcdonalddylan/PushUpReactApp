@@ -15,5 +15,23 @@
     background-color: $dsec;
     margin-top: 20px;
     border: 0px;
+    border-radius: 4px;
     padding: 10px;
+    transform: translate(-13px,-13px);
+    vertical-align: middle;
+    box-shadow: 
+    1px 1px 0 0 darken($dsec, 30%),
+    3px 3px 0 0 darken($dsec, 30%),
+    5px 5px 0 0 darken($dsec, 30%),
+    7px 7px 0 0 darken($dsec, 30%),
+    9px 9px 0 0 darken($dsec, 30%),
+    11px 11px 0 0 darken($dsec, 30%),
+    13px 13px 0 0 darken($dsec, 30%);
+    transition: all 0.1s;
+}
+
+.back-btn-row:hover .back-btn {
+    box-shadow: 2px 2px darken($dsec, 30%);
+    transform: translate(-2px,-2px);
+    transition: all 0.1s;
 }

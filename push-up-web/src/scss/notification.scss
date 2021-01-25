@@ -1,6 +1,6 @@
 @import "colors.scss";
 
-.notif {
+.notif-info {
     position: relative;
     border: 2px solid $primary;
     border-radius: 10px;
@@ -9,6 +9,21 @@
     margin: 20px;
     background-color: $lpri;
     color: $dsec;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.notif-error {
+    position: relative;
+    border: 2px solid $tertiary;
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px;
+    margin: 20px;
+    background-color: $lter;
+    color: $dter;
     font-size: 20px;
     font-weight: bold;
     text-align: center;

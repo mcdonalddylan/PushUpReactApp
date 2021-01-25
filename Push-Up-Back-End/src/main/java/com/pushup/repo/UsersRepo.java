@@ -27,4 +27,8 @@ public interface UsersRepo extends JpaRepository<Users,Integer>{
 	@Modifying
 	@Query("update Users u set u.verified = ?1 where  u.id = ?2") //'U' in users has to be capitalized here since it's referring to the Entity name
 	public void setVerifiedForUsers(boolean verified, Integer id);
+	
+	@Modifying
+	@Query("update Users u set u.password = ?1 where  u.email = ?2") //'U' in users has to be capitalized here since it's referring to the Entity name
+	public void setPasswordForUsers(String password, String email);
 }

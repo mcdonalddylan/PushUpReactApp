@@ -2,11 +2,11 @@ import React, { SyntheticEvent, useEffect, useState } from "react"
 import { TimerModal } from "./TimerModal";
 import alarm2 from "../assets/push_up_alarm1.wav";
 import { Redirect } from "react-router";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { setNotifState } from "../actions/notifActions";
 
 interface IProps {
-
+    email: string,
 }
 
 let totalSeconds: number = 0; //global variable that you can add to other components
@@ -17,10 +17,11 @@ let totalSeconds: number = 0; //global variable that you can add to other compon
  * push-up record data.
  * 
  * @param props N/A
- */
-export const MainComp: React.FC<IProps> = (props: IProps) => {
+*/
+const MainComp: React.FC<IProps> = (props: IProps) => {
     
     const [hasPlayedAlarm, setPlayedAlarm] = useState(false);
+    const [isLoggedIn, setLoggedIn] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [seconds, setSeconds] = useState(0);
     const [allowCountdown, setAllow] = useState(false);
@@ -31,9 +32,26 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
 
     const dispatch = useDispatch();
     
+    //checks if you are logged in
+    if(props.email.length == 0)
+    {
+        if(isLoggedIn == true)
+        {
+            setLoggedIn(false);
+        }
+    }
+    else
+    {
+        if(isLoggedIn == false)
+        {
+            setLoggedIn(true);
+        }
+    }
+
     /** starts the timer */
     const startTimer = (event:SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
+        //console.log(props.email.length);
 
         totalSeconds = event.currentTarget["min-input"].value*60;
         //totalSeconds = 1
@@ -50,7 +68,7 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
             const newNotif = {
                 id: Math.random()*10000,
                 show: true,
-                notifType: "info",
+                notifType: "notif-error",
                 msg: "ERROR: No time amount has been selected.",
             }
 
@@ -126,7 +144,12 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="main-comp">
-                <button className="log-return-btn" onClick={()=>{setRedirectToLogin(!redirectToLogin);}}>X</button>
+                    {isLoggedIn ?
+                        <></>
+                    :
+                        <button className="log-return-btn" onClick={()=>{setRedirectToLogin(!redirectToLogin);}}>X</button>
+                    }
+                
 
                     <div className="row">
                         <h4 className="min-label">Minutes before alarm:</h4>
@@ -159,3 +182,11 @@ export const MainComp: React.FC<IProps> = (props: IProps) => {
         </>
     )
 }
+
+const mapStateToProps = (appState: any) => {
+    return{
+        email: appState.userState.email,
+    };
+};
+
+export default connect<IProps>(mapStateToProps)(MainComp);

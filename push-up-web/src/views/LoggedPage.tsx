@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
-import { MainComp } from "../components/MainComp";
+import MainComp from "../components/MainComp";
 import nope from "../assets/nope.gif";
 import { Spinner } from "react-bootstrap";
 import axiosConfig from "../util/axiosConfig";
@@ -23,7 +23,7 @@ const LoggedPage: React.FC<IProps> = (props:IProps) => {
     const dispatch = useDispatch();
     
     //goes back to login page if not logged in
-    if(props.userid == 0)
+    if(props.email.length == 0)
     {
         window.location.href="/";
     }
@@ -43,25 +43,25 @@ const LoggedPage: React.FC<IProps> = (props:IProps) => {
                 console.log(response
                     );
 
-                if(response.data == "success")
+                if(response.status == 200)
                 {
                     setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
                         show: true,
-                        notifType: "info",
-                        msg: "**Email resent to: " + props.email + "**",
+                        notifType: "notif-info",
+                        msg: "**New code sent to: " + props.email + "**",
                     }
     
                     dispatch(setNotifState(newNotif));
                 }
-                else if (response.data == "error")
+                else
                 {
                     setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
                         show: true,
-                        notifType: "info",
+                        notifType: "notif-error",
                         msg: "ERROR: Unknown error. Email not sent.",
                     }
     
@@ -75,7 +75,7 @@ const LoggedPage: React.FC<IProps> = (props:IProps) => {
                 const newNotif = {
                     id: Math.random()*10000,
                     show: true,
-                    notifType: "info",
+                    notifType: "notif-error",
                     msg: "ERROR: Unknown error. Email not sent.",
                 }
     
@@ -88,12 +88,12 @@ const LoggedPage: React.FC<IProps> = (props:IProps) => {
         <>
             {ifVerified ?
             <>
-                <div className="container">
+                {/* <div className="container">
                     <div className="row justify-content-center">
                         <h3 style={{marginTop: 5, marginBottom: 20}}>
                             Welcome back {props.firstName} {props.lastName}!</h3>
                     </div>
-                </div>
+                </div> */}
                 <MainComp />
             </>
             :

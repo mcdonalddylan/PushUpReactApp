@@ -1,5 +1,5 @@
 import React from "react";
-import { MainComp } from "../components/MainComp";
+import MainComp from "../components/MainComp";
 
 interface IProps {
 

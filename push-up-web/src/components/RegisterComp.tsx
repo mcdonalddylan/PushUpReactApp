@@ -45,7 +45,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                     const newNotif = {
                         id: Math.random()*10000,
                         show: true,
-                        notifType: "info",
+                        notifType: "notif-info",
                         msg: `User: ${firstName} ${lastName} successfully added! Verification email sent.`,
                     }
         
@@ -60,7 +60,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                         const newNotif = {
                             id: Math.random()*10000,
                             show: true,
-                            notifType: "info",
+                            notifType: "notif-error",
                             msg: `ERROR: User unable to be added.`,
                         }
         
@@ -73,7 +73,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                     setShowSpinner(false);
                     const newNotif = {
                         id: Math.random()*10000,
-                        notifType: "info",
+                        notifType: "notif-error",
                         show: true,
                         msg: `ERROR: Passwords do not match.`,
                     }
@@ -87,7 +87,7 @@ export const RegisterComp: React.FC<IProps> = (props:IProps) => {
                 const newNotif = {
                     id: Math.random()*10000,
                     show: true,
-                    notifType: "info",
+                    notifType: "notif-error",
                     msg: `ERROR: Not all fields are filled in.`,
                 }
 
