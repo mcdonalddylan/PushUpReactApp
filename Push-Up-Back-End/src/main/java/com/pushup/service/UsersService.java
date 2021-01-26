@@ -83,6 +83,49 @@ public class UsersService {
 		}
 	}
 	
+	public Boolean changeFirstName(String email, String newName)
+	{
+		try {
+			userRepo.setFirstNameForUsers(newName, email);
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public Boolean changeLastName(String email, String newName)
+	{
+		try {
+			userRepo.setLastNameForUsers(newName, email);
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public Boolean newTempPassword(String email)
+	{
+		try {
+			Random rand = new Random();
+			int tempPass = rand.nextInt(100000);
+			
+			userRepo.setPasswordForUsers(String.valueOf(tempPass), email);
+			
+			EmailUtil.sendMail(email, "New temporary password", 
+		       		"Your new temporary password is: " + tempPass);
+			
+			return true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	//------------------------------------------------------------------------------------------------
 	//function found at: https://stackoverflow.com/questions/1033947/mysql-md5-and-java-md5-not-equal
 	//meant to encode the hashed password into base 16 to match the password in the db.

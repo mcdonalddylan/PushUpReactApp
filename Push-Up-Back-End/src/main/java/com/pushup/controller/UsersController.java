@@ -74,4 +74,22 @@ public class UsersController {
 		return userService.changePassword(email, newPass);
 	}
 	
+	@PostMapping("/changeFN/{email}+{newName}")
+	public @ResponseBody Boolean changeFirstName(@PathVariable("email") String email, @PathVariable("newName") String newName)
+	{
+		return userService.changePassword(email, newName);
+	}
+	
+	@PostMapping("/changeLN/{email}+{newName}")
+	public @ResponseBody Boolean changeLastName(@PathVariable("email") String email, @PathVariable("newName") String newName)
+	{
+		return userService.changePassword(email, newName);
+	}
+	
+	@PostMapping("/newPass/{email}")
+	public @ResponseBody Boolean changeLastName(@PathVariable("email") String email)
+	{
+		return userService.newTempPassword(email);
+	}
+	
 }

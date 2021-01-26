@@ -31,4 +31,12 @@ public interface UsersRepo extends JpaRepository<Users,Integer>{
 	@Modifying
 	@Query("update Users u set u.password = ?1 where  u.email = ?2") //'U' in users has to be capitalized here since it's referring to the Entity name
 	public void setPasswordForUsers(String password, String email);
+	
+	@Modifying
+	@Query("update Users u set u.firstName = ?1 where  u.email = ?2") //'U' in users has to be capitalized here since it's referring to the Entity name
+	public void setFirstNameForUsers(String firstName, String email);
+	
+	@Modifying
+	@Query("update Users u set u.lastName = ?1 where  u.email = ?2") //'U' in users has to be capitalized here since it's referring to the Entity name
+	public void setLastNameForUsers(String lastName, String email);
 }
