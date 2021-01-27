@@ -171,7 +171,9 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                     </div>
 
                     <div className="row justify-content-center start-btn-row" style={{marginTop: 15}}>
-                        <button onClick={()=>setForgot(!showForgot)} className="start-btn">Back to login</button>
+                        <button onClick={()=>{
+                            if(showSpinner == false)
+                            setForgot(!showForgot);}} className="start-btn">Back to login</button>
                     </div>
                 </form>
                 :
@@ -193,12 +195,14 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                         </div>
 
                         <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
-                            <input id="log-btn" type="submit" value="login" 
+                            <input id="log-btn" type="submit" value="Login" 
                             className="start-btn"/>
                         </div>
 
                         <div className="row justify-content-center start-btn-row" style={{marginTop: 15}}>
-                            <button onClick={()=>setForgot(!showForgot)} className="start-btn">Forgot password</button>
+                            <button onClick={()=>{
+                                if(showSpinner == false)
+                                setForgot(!showForgot);}} className="start-btn">Forgot password</button>
                         </div>
                 </form>
                 }
@@ -221,7 +225,7 @@ export const LoginComp: React.FC<IProps> = (props:IProps) => {
                 <a onClick={()=>props.toggleRegisterFunction()}>Don't have an account?</a>
             </div>
 
-            {redirectToLogin ? <Redirect to="/LoggedIn"/> : <></>}
+            {redirectToLogin ? <Redirect to="/loggedIn"/> : <></>}
         </div>  
     )
 }

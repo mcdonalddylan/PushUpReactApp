@@ -86,6 +86,100 @@ const UserSettingsPage:React.FC<IProps> = (props:IProps) => {
         }
     }
 
+    const changeFName = (event:SyntheticEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+
+        const name = event.currentTarget["fName"].value;
+
+        if (name != "")
+        {
+            axiosConfig.post("/users/changeFN/"+props.email+"+"+name)
+            .then((response)=>{
+                console.log(response);
+                console.log(response.data);
+
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-info",
+                    msg: "***First name successfully changed to: "+name,
+                }
+    
+                dispatch(setNotifState(newNotif));
+            })
+            .catch(()=>{
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-error",
+                    msg: "ERROR: Unknown error. Name was not altered.",
+                }
+    
+                dispatch(setNotifState(newNotif));
+            })
+        }
+        else if (name == "")
+        {
+            setShowSpinner(false);
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-error",
+                    msg: "ERROR: Nothing entered in either text box.",
+                }
+    
+                dispatch(setNotifState(newNotif));
+        }
+    }
+
+    const changeLName = (event:SyntheticEvent<HTMLFormElement>) => {
+
+        event.preventDefault();
+
+        const name = event.currentTarget["lName"].value;
+
+        if (name != "")
+        {
+            axiosConfig.post("/users/changeLN/"+props.email+"+"+name)
+            .then((response)=>{
+                console.log(response);
+                console.log(response.data);
+
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-info",
+                    msg: "***Last name successfully changed to: "+name,
+                }
+    
+                dispatch(setNotifState(newNotif));
+            })
+            .catch(()=>{
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-error",
+                    msg: "ERROR: Unknown error. Name was not altered.",
+                }
+    
+                dispatch(setNotifState(newNotif));
+            })
+        }
+        else if (name == "")
+        {
+            setShowSpinner(false);
+                const newNotif = {
+                    id: Math.random()*10000,
+                    show: true,
+                    notifType: "notif-error",
+                    msg: "ERROR: Nothing entered in either text box.",
+                }
+    
+                dispatch(setNotifState(newNotif));
+        }
+    }
+
     const closeForm = () => {
         setRedirect(!redirectToLogin);
     }
@@ -114,6 +208,36 @@ const UserSettingsPage:React.FC<IProps> = (props:IProps) => {
                         <div className="row justify-content-center">
                             <input id="pass2" type="password" name="password2" 
                             className="push-input" placeholder="*********" />
+                        </div>
+
+                        <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
+                            <input id="sub-btn" type="submit" value="Submit Changes" 
+                            className="start-btn"/>
+                        </div>
+                    </form>
+
+                    <form onSubmit={changeFName}>
+                        <div className="row justify-content-center" style={{marginTop: 20}}>
+                            <h4 id="p-label" style={{textAlign: "center", margin: "auto"}}>New First Name:</h4>
+                        </div>
+                        <div className="row justify-content-center">
+                            <input id="fName" type="text" name="fName" 
+                            className="push-input" placeholder={props.firstName} />
+                        </div>
+
+                        <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
+                            <input id="sub-btn" type="submit" value="Submit Changes" 
+                            className="start-btn"/>
+                        </div>
+                    </form>
+
+                    <form onSubmit={changeLName}>
+                        <div className="row justify-content-center" style={{marginTop: 20}}>
+                            <h4 id="p-label" style={{textAlign: "center", margin: "auto"}}>New Last Name:</h4>
+                        </div>
+                        <div className="row justify-content-center">
+                            <input id="lName" type="text" name="lName" 
+                            className="push-input" placeholder={props.lastName} />
                         </div>
 
                         <div className="row justify-content-center start-btn-row" style={{marginTop: 20}}>
